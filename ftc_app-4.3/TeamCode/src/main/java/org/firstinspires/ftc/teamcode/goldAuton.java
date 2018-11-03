@@ -55,7 +55,23 @@ public class goldAuton extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        lFDrive = hardwareMap.get(DcMotor.class, "LFDrive");
+        lRDrive = hardwareMap.get(DcMotor.class, "LRDrive");
 
+        rFDrive = hardwareMap.get(DcMotor.class, "RFDrive");
+        rRDrive = hardwareMap.get(DcMotor.class, "RRDrive");
+
+        upArm = hardwareMap.get(DcMotor.class, "UpArm");
+        lowArm = hardwareMap.get(DcMotor.class, "LowArm");
+
+        bucketAngle = hardwareMap.get(DcMotor.class, "bucketAngle");
+        bucketFlaps = hardwareMap.get(DcMotor.class, "bucketFlap");
+
+        lift1 = hardwareMap.get(Servo.class, "lift1");
+        lift2 = hardwareMap.get(Servo.class, "lift2");
+
+        rFDrive.setDirection(DcMotor.Direction.REVERSE);
+        rRDrive.setDirection(DcMotor.Direction.REVERSE);
     }
 
 }
