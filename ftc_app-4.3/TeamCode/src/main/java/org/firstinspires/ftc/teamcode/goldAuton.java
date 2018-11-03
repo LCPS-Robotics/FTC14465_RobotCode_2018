@@ -23,11 +23,11 @@ public class goldAuton extends LinearOpMode {
     11. (Optional) Pick up Elements
      */
 
-    //leftDrive Motors
+    //lFDrive Motors
     private DcMotor lFDrive = null;
     private DcMotor lRDrive = null;
 
-    //rightDrive Motors
+    //rFDrive Motors
     private DcMotor rFDrive = null;
     private DcMotor rRDrive = null;
 
@@ -88,6 +88,45 @@ public class goldAuton extends LinearOpMode {
 
         telemetry.addData("Path0", "Starting at %7d : %7d", lFDrive.getCurrentPosition(), rFDrive.getCurrentPosition());
         telemetry.update();
+
+        waitForStart();
+
+        //encoderDriving
+
+    }
+
+    public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
+        int newLeftTarget;
+        int newRightTarget;
+
+        if (opModeIsActive()) {
+            newLeftTarget = lFDrive.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
+            newRightTarget = rFDrive.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
+
+            lFDrive.setTargetPosition(newLeftTarget);
+            rFDrive.setTargetPosition(newRightTarget);
+
+            lFDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rFDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            runTime.reset();
+            lFDrive.setPower(Math.abs(speed));
+            rFDrive.setPower(Math.abs(speed));
+
+            while (opModeIsActive() &&
+                    (runTime.seconds() < timeoutS) &&
+                    (lFDrive.isBusy() && rFDrive.isBusy())) {
+                telemetry.addData("Path1", "Running to %7d: %7d", newLeftTarget, newRightTarget);
+                telemetry.addData("Path2", "Running at %7d :%7d", lFDrive.getCurrentPosition(), rFDrive.getCurrentPosition());
+                telemetry.update();
+            }
+
+            lFDrive.setPower(0);
+            rFDrive.setPower(0);
+
+            lFDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rFDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
     }
 
 }
