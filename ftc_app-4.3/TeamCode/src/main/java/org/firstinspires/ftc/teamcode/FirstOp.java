@@ -71,7 +71,11 @@ public class FirstOp extends OpMode{
 
         if (gamepad2.right_bumper){
             // this is 1/4 power sweeper speed
-            sweeperPower = .75;
+            sweeperPower = 1;
+        }
+        else if (gamepad2.left_bumper){
+            // this is 1/4 power sweeper speed
+            sweeperPower = -1;
         }
         else{
             sweeperPower = 0;
