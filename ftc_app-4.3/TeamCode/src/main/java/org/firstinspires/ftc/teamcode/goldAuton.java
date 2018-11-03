@@ -102,6 +102,11 @@ public class goldAuton extends LinearOpMode {
         encoderDrive(DRIVE_SPEED, 6, 6, 3.0);
         encoderDrive(TURN_SPEED, 14, -14, 4.0);
         encoderDrive(DRIVE_SPEED, 18, 18, 6.0);
+        armControl(.5, 100, true);
+    }
+
+    public void bucketControl(double speed, int position, boolean scooperOn, boolean in){
+
     }
 
     public void armControl(double speed, int position, boolean Up){
