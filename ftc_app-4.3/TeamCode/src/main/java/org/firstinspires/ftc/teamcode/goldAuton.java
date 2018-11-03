@@ -72,6 +72,19 @@ public class goldAuton extends LinearOpMode {
 
         rFDrive.setDirection(DcMotor.Direction.REVERSE);
         rRDrive.setDirection(DcMotor.Direction.REVERSE);
+
+        telemetry.addData("Status", "Resetting Encoders");
+        telemetry.update();
+
+        lFDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lRDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rFDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rRDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        lFDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        lRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rFDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
 }
