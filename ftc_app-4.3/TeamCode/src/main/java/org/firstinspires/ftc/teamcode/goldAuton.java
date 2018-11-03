@@ -105,13 +105,19 @@ public class goldAuton extends LinearOpMode {
 
             lFDrive.setTargetPosition(newLeftTarget);
             rFDrive.setTargetPosition(newRightTarget);
+            lRDrive.setTargetPosition(newLeftTarget);
+            rRDrive.setTargetPosition(newRightTarget);
 
             lFDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             rFDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            lRDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rRDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             runTime.reset();
             lFDrive.setPower(Math.abs(speed));
             rFDrive.setPower(Math.abs(speed));
+            lRDrive.setPower(Math.abs(speed));
+            rRDrive.setPower(Math.abs(speed));
 
             while (opModeIsActive() &&
                     (runTime.seconds() < timeoutS) &&
@@ -123,9 +129,13 @@ public class goldAuton extends LinearOpMode {
 
             lFDrive.setPower(0);
             rFDrive.setPower(0);
+            lRDrive.setPower(0);
+            rRDrive.setPower(0);
 
             lFDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             rFDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            lRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
 
