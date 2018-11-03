@@ -54,11 +54,11 @@ public class FirstOp extends OpMode{
         double sweeperPower;
         double armPower;
 
-        if(gamepad1.right_trigger > 0.0){
-            armPower = gamepad1.right_trigger;
+        if(gamepad2.right_trigger > 0.0){
+            armPower = gamepad2.right_trigger;
         }
-        else if (gamepad1.left_trigger > 0.0){
-            armPower = -gamepad1.left_trigger;
+        else if (gamepad2.left_trigger > 0.0){
+            armPower = -gamepad2.left_trigger;
         }
         else{
             armPower = 0.0;
@@ -69,7 +69,7 @@ public class FirstOp extends OpMode{
         leftPower = gamepad1.left_stick_y;
         rightPower = gamepad1.right_stick_y;
 
-        if (gamepad1.right_bumper){
+        if (gamepad2.right_bumper){
             // this is 1/4 power sweeper speed
             sweeperPower = .75;
         }
@@ -79,13 +79,13 @@ public class FirstOp extends OpMode{
 
         //scoop control
 
-        if (gamepad1.dpad_up){
+        if (gamepad2.dpad_up){
             position -= INCREMENT;
             if(position < 0.0){
                 position = 0.0;
             }
         }
-        else if (gamepad1.dpad_down){
+        else if (gamepad2.dpad_down){
             position += INCREMENT;
             if(position > 1.0){
                 position = 1.0;
