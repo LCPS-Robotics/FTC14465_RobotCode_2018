@@ -95,6 +95,11 @@ public class goldAuton extends LinearOpMode {
 
     }
 
+    public void climbDown(){
+        lift1.setPosition(.82);
+        lift2.setPosition(.82);
+    }
+
     public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
         int newLeftTarget;
         int newRightTarget;

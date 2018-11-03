@@ -110,6 +110,9 @@ public class FirstOp extends OpMode{
             if(position > 1.0){
                 position = 1.0;
             }
+        else{
+                position = position;
+            }
         }
 
         //deadzone
