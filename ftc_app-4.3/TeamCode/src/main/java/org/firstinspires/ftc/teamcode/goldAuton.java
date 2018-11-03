@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import java.sql.Driver;
+
 @Autonomous(name="Gold Auto", group="14465")
 public class goldAuton extends LinearOpMode {
     /*
@@ -92,7 +94,30 @@ public class goldAuton extends LinearOpMode {
         waitForStart();
 
         //encoderDriving
+        climbDown();
+        encoderDrive(DRIVE_SPEED, -6, -6, 3.0);
+        encoderDrive(TURN_SPEED, -12, 12, 4.0);
+        encoderDrive(DRIVE_SPEED, 12, 12, 4.0);
+        encoderDrive(TURN_SPEED, -12, 12, 4.0);
+        encoderDrive(DRIVE_SPEED, 6, 6, 3.0);
+        encoderDrive(TURN_SPEED, 14, -14, 4.0);
+        encoderDrive(DRIVE_SPEED, 18, 18, 6.0);
+    }
 
+    public void armControl(double speed, int position, boolean Up){
+        upArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        lowArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        if (Up){
+            //if up arm
+            upArm.setTargetPosition(position);
+            upArm.setPower(speed);
+        }
+        else{
+            //if low arm
+            lowArm.setTargetPosition(position);
+            lowArm.setPower(speed);
+        }
     }
 
     public void climbDown(){
