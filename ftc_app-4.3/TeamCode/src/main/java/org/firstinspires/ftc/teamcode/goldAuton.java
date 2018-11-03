@@ -85,6 +85,9 @@ public class goldAuton extends LinearOpMode {
         lRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rFDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        telemetry.addData("Path0", "Starting at %7d : %7d", lFDrive.getCurrentPosition(), rFDrive.getCurrentPosition());
+        telemetry.update();
     }
 
 }
