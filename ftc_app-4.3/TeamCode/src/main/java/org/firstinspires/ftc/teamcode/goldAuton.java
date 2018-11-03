@@ -118,6 +118,14 @@ public class goldAuton extends LinearOpMode {
             lowArm.setTargetPosition(position);
             lowArm.setPower(speed);
         }
+        while(lowArm.isBusy() || upArm.isBusy()){
+
+        }
+        lowArm.setPower(0);
+        upArm.setPower(0);
+
+        lowArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        upArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void climbDown(){
