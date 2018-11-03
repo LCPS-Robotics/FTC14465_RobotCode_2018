@@ -106,6 +106,36 @@ public class goldAuton extends LinearOpMode {
     }
 
     public void bucketControl(double speed, int position, boolean scooperOn, boolean in){
+        if (scooperOn){
+            //scooper on
+            if (in){
+                //scoop in
+                bucketFlaps.setPower(.5);
+            }
+            else{
+                //scoop out
+                bucketFlaps.setPower(-.5);
+            }
+            bucketAngle.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            bucketAngle.setTargetPosition(position);
+            bucketAngle.setPower(speed);
+            while(bucketAngle.isBusy()){
+
+            }
+            bucketAngle.setPower(0);
+        }
+        else{
+            bucketFlaps.setPower(0);
+            bucketAngle.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            bucketAngle.setTargetPosition(position);
+            bucketAngle.setPower(speed);
+            while(bucketAngle.isBusy()){
+
+            }
+            bucketAngle.setPower(0);
+        }
+
+
 
     }
 
