@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import java.sql.Driver;
+
 @Autonomous(name="Silver Auto", group="14465")
 public class silverAuton extends LinearOpMode {
     //lFDrive Motors
@@ -76,58 +78,61 @@ public class silverAuton extends LinearOpMode {
 
         waitForStart();
 
+        climbDown();
+        encoderDrive(DRIVE_SPEED, 6, 6, 3.0);
+        encoderDrive(TURN_SPEED, -12, 12, 3.0);
+        encoderDrive(DRIVE_SPEED, 12, 12, 4.0);
+        encoderDrive(TURN_SPEED, -12, 12, 3.0);
+        encoderDrive(DRIVE_SPEED, 18, 18, 5.0);
+        
 
     }
 
-    public void bucketControl(double speed, int position, boolean scooperOn, boolean in){
-        if (scooperOn){
+    public void bucketControl(double speed, int position, boolean scooperOn, boolean in) {
+        if (scooperOn) {
             //scooper on
-            if (in){
+            if (in) {
                 //scoop in
                 bucketFlaps.setPower(.5);
-            }
-            else{
+            } else {
                 //scoop out
                 bucketFlaps.setPower(-.5);
             }
             bucketAngle.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             bucketAngle.setTargetPosition(position);
             bucketAngle.setPower(speed);
-            while(bucketAngle.isBusy()){
+            while (bucketAngle.isBusy()) {
 
             }
             bucketAngle.setPower(0);
-        }
-        else{
+        } else {
             bucketFlaps.setPower(0);
             bucketAngle.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             bucketAngle.setTargetPosition(position);
             bucketAngle.setPower(speed);
-            while(bucketAngle.isBusy()){
+            while (bucketAngle.isBusy()) {
 
             }
             bucketAngle.setPower(0);
         }
 
 
-
     }
 
-    public void armControl(double speed, int position, boolean Up){
+    public void armControl(double speed, int position, boolean Up) {
         upArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         lowArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        if (Up){
+        if (Up) {
             //if up arm
             upArm.setTargetPosition(position);
             upArm.setPower(speed);
-        }
-        else{
+        } else {
             //if low arm
             lowArm.setTargetPosition(position);
             lowArm.setPower(speed);
         }
-        while(lowArm.isBusy() || upArm.isBusy()){
+        while (lowArm.isBusy() || upArm.isBusy()) {
 
         }
         lowArm.setPower(0);
@@ -137,7 +142,7 @@ public class silverAuton extends LinearOpMode {
         upArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    public void climbDown(){
+    public void climbDown() {
         lift1.setPosition(.82);
         lift2.setPosition(.82);
     }
