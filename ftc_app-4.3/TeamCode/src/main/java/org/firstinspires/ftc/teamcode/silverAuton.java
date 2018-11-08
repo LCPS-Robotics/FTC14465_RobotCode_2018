@@ -84,7 +84,10 @@ public class silverAuton extends LinearOpMode {
         encoderDrive(DRIVE_SPEED, 12, 12, 4.0);
         encoderDrive(TURN_SPEED, -12, 12, 3.0);
         encoderDrive(DRIVE_SPEED, 18, 18, 5.0);
-        
+        encoderDrive(TURN_SPEED, -4, 4, 2.0);
+        encoderDrive(DRIVE_SPEED, 24, 24, 6.0);
+        encoderDrive(TURN_SPEED, 22.667, -22.667, 5.0);
+        encoderDrive(DRIVE_SPEED, 41, 41, 10.0);
 
     }
 
