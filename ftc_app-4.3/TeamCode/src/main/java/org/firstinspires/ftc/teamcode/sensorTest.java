@@ -41,6 +41,9 @@ public class sensorTest extends LinearOpMode {
                     hsvValues);
 
             telemetry.addData("Distance (in)", String.format(Locale.US, "%.02f", sensorDistance.getDistance(DistanceUnit.INCH)));
+            telemetry.addData("Alpha", sensorColor.alpha());
+            telemetry.addData("Red ", sensorColor.red());
+            
         }
     }
 }
