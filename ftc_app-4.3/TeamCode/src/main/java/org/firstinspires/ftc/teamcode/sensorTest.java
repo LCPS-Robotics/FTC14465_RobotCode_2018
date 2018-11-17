@@ -43,7 +43,25 @@ public class sensorTest extends LinearOpMode {
             telemetry.addData("Distance (in)", String.format(Locale.US, "%.02f", sensorDistance.getDistance(DistanceUnit.INCH)));
             telemetry.addData("Alpha", sensorColor.alpha());
             telemetry.addData("Red ", sensorColor.red());
-            
+            telemetry.addData("Green ", sensorColor.green());
+            telemetry.addData("Blue ", sensorColor.blue());
+            telemetry.addData("Hue", hsvValues[0]);
+
+            relativeLayout.post(new Runnable() {
+                @Override
+                public void run() {
+                    relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values));
+                }
+            });
+            telemetry.update();
         }
+
+        relativeLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                relativeLayout.setBackgroundColor(Color.WHITE);
+            }
+        });
+
     }
 }
