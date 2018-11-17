@@ -13,6 +13,14 @@ public class sensorTest extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
+        sensorDistance = hardwareMap.get(DistanceSensor.class, "sensor_color_distance");
 
+        float hsvValues[] = {0F, 0F, 0F};
+        final float values[] = hsvValues;
+
+        final double SCALE_FACTOR = 255;
+
+        int relativeLayoutId = hardwareMap.appContext.getResources().getIdentifier("RelativeLayout", "id", hardwareMap.appContext.getPackageName());
     }
 }

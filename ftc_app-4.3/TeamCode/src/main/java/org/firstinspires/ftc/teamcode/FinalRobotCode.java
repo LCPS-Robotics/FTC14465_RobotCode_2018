@@ -43,9 +43,9 @@ public class FinalRobotCode extends OpMode {
     public void init() {
         telemetry.addData("Status", "Initialized");
 
+
         lFDrive = hardwareMap.get(DcMotor.class, "LFDrive");
         lRDrive = hardwareMap.get(DcMotor.class, "LRDrive");
-
         rFDrive = hardwareMap.get(DcMotor.class, "RFDrive");
         rRDrive = hardwareMap.get(DcMotor.class, "RRDrive");
 
