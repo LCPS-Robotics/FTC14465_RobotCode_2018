@@ -95,11 +95,7 @@ public class FirstOp extends OpMode{
                 position = 1.0;
             }
         }
-        else{
-            position = position;
-        }
-
-        if (gamepad2.dpad_up){
+        else if (gamepad2.dpad_up){
             position -= INCREMENT;
             if(position < 0.0){
                 position = 0.0;
@@ -110,9 +106,10 @@ public class FirstOp extends OpMode{
             if(position > 1.0){
                 position = 1.0;
             }
+
+        }
         else{
-                position = position;
-            }
+            position = position;
         }
 
         //deadzone
