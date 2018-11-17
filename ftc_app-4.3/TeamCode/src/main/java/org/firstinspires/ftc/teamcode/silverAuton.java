@@ -6,6 +6,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+<<<<<<< HEAD
+=======
+import java.sql.Driver;
+
+>>>>>>> db0965b9f54fb78de7ff0b39db714604b24cf8a1
 @Autonomous(name="Silver Auto", group="14465")
 public class silverAuton extends LinearOpMode {
     //lFDrive Motors
@@ -191,4 +196,8 @@ public class silverAuton extends LinearOpMode {
             rRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> db0965b9f54fb78de7ff0b39db714604b24cf8a1
