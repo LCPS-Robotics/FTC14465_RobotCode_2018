@@ -11,7 +11,6 @@ public class servoTest extends OpMode {
 
     @Override
     public void init() {
-        telemetry.addData("Servo Angle", bucket.getPosition());
         bucket = hardwareMap.get(Servo.class, "bucketServo");
     }
 
@@ -24,20 +23,21 @@ public class servoTest extends OpMode {
     public void loop() {
         telemetry.addData("Servo Angle", bucket.getPosition());
 
-        if(gamepad1.right_bumper){
-            bucket.setPosition(.25);
+        if(gamepad1.right_trigger >= .5){
+            bucket.setPosition(.5);
         }
         else{
 
         }
 
-        if(gamepad1.left_bumper){
-            bucket.setPosition(1);
+        if(gamepad1.left_trigger >= .5){
+            bucket.setPosition(.75);
         }
         else {
 
         }
 
         telemetry.update();
+
     }
 }
