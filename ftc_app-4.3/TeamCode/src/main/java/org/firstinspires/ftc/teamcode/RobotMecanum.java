@@ -18,7 +18,8 @@ public class RobotMecanum extends OpMode {
         lRDrive = hardwareMap.get(DcMotor.class, "LRDrive");
         rFDrive = hardwareMap.get(DcMotor.class, "RFDrive");
         rRDrive = hardwareMap.get(DcMotor.class, "RRDrive");
-        
+
+        telemetry.addData("Status", "Initialized");
     }
 
     @Override
