@@ -35,5 +35,30 @@ public class RobotMecanum extends OpMode {
         wheelSpeeds[2] = -x + y + rotate;
         wheelSpeeds[3] = x + y - rotate;
 
+        normalize(wheelSpeeds);
+
+        lFDrive.setPower(wheelSpeeds[0]);
+        rFDrive.setPower(wheelSpeeds[1]);
+        lRDrive.setPower(wheelSpeeds[2]);
+        rRDrive.setPower(wheelSpeeds[3]);
+    }
+
+    private void normalize(double[] wheelSpeeds){
+        double maxMagnitude = Math.abs(wheelSpeeds[0]);
+
+        for (int i = 1; i < wheelSpeeds.length; i++){
+            double magnitude = Math.abs(wheelSpeeds[i]);
+
+            if (magnitude > maxMagnitude){
+                maxMagnitude = magnitude;
+            }
+        }
+
+        if (maxMagnitude > 1.0){
+            for (int i = 0; i < wheelSpeeds.length; i++){
+                wheelSpeeds[i] /= maxMagnitude;
+            }
+        }
+
     }
 }
