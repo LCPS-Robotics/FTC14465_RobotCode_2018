@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name="Mecanum Robot", group="Teleop")
 public class RobotMecanum extends OpMode {
@@ -19,12 +20,15 @@ public class RobotMecanum extends OpMode {
         rFDrive = hardwareMap.get(DcMotor.class, "RFDrive");
         rRDrive = hardwareMap.get(DcMotor.class, "RRDrive");
 
+        rFDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        rRDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+
         telemetry.addData("Status", "Initialized");
     }
 
     @Override
     public void loop() {
-        mecanumDrive(gamepad1.left_stick_x,-gamepad1.right_stick_x, -gamepad1.left_stick_y);
+        mecanumDrive(gamepad1.left_stick_x,-gamepad1.left_stick_y, -gamepad1.right_stick_x);
 
     }
 
