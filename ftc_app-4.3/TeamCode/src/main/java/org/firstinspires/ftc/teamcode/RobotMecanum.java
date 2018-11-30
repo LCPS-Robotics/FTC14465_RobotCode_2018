@@ -26,4 +26,14 @@ public class RobotMecanum extends OpMode {
     public void loop() {
 
     }
+
+    public void mecanumDrive(double x, double y, double rotate){
+        double wheelSpeeds[] = new double[4];
+
+        wheelSpeeds[0] = x + y + rotate;
+        wheelSpeeds[1] = -x + y - rotate;
+        wheelSpeeds[2] = -x + y + rotate;
+        wheelSpeeds[3] = x + y - rotate;
+
+    }
 }
