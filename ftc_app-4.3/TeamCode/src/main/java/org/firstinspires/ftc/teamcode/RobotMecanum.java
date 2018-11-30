@@ -24,6 +24,7 @@ public class RobotMecanum extends OpMode {
 
     @Override
     public void loop() {
+        mecanumDrive(gamepad1.left_stick_x,-gamepad1.right_stick_x, -gamepad1.left_stick_y);
 
     }
 
