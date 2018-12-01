@@ -65,6 +65,8 @@ public class silverAuton extends LinearOpMode {
         encoderDrive(DRIVE_SPEED, 6, 6, 3.0);
         encoderDrive(TURN_SPEED, -12, 12, 3.0);
 
+        mecanumDrive(1.0, 4, 3.0);
+
     }
 
     public void armControl(double speed, int position) {
