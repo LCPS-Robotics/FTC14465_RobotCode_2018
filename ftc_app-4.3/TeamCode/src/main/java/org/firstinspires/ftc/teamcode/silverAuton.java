@@ -85,6 +85,14 @@ public class silverAuton extends LinearOpMode {
 
     }
 
+    public void mecanumDrive(double strafeSpeed, double strafeDistance, double timeoutS){
+        int newStrafeTarget;
+
+        if (opModeIsActive()){
+            newStrafeTarget = lFDrive.getCurrentPosition() + (int)(strafeDistance * COUNTS_PER_INCH);
+        }
+    }
+
     public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
         int newLeftTarget;
         int newRightTarget;
