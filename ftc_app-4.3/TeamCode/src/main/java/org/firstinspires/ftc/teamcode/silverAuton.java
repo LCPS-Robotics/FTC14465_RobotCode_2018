@@ -99,6 +99,29 @@ public class silverAuton extends LinearOpMode {
             rFDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             lRDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             rRDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            runTime.reset();
+            lFDrive.setPower(Math.abs(strafeSpeed));
+            rFDrive.setPower(Math.abs(strafeSpeed));
+            lRDrive.setPower(Math.abs(strafeSpeed));
+            rRDrive.setPower(Math.abs(strafeSpeed));
+
+            while (opModeIsActive() &&
+                    (runTime.seconds() < timeoutS) &&
+                    (lFDrive.isBusy() && rFDrive.isBusy())) {
+                telemetry.addData("Path2", "Running at %7d :%7d", lFDrive.getCurrentPosition(), rFDrive.getCurrentPosition());
+                telemetry.update();
+            }
+
+            lFDrive.setPower(0);
+            rFDrive.setPower(0);
+            lRDrive.setPower(0);
+            rRDrive.setPower(0);
+
+            lFDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rFDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            lRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
 
