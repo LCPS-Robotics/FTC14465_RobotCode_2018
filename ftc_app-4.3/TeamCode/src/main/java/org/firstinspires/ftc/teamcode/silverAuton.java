@@ -90,6 +90,15 @@ public class silverAuton extends LinearOpMode {
 
         if (opModeIsActive()){
             newStrafeTarget = lFDrive.getCurrentPosition() + (int)(strafeDistance * COUNTS_PER_INCH);
+            lFDrive.setTargetPosition(newStrafeTarget);
+            lRDrive.setTargetPosition(-newStrafeTarget);
+            rFDrive.setTargetPosition(newStrafeTarget);
+            rRDrive.setTargetPosition(-newStrafeTarget);
+
+            lFDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rFDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            lRDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rRDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
     }
 
