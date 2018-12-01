@@ -18,16 +18,7 @@ public class silverAuton extends LinearOpMode {
     private DcMotor rRDrive = null;
 
     //Arm Motors
-    private DcMotor upArm = null;
     private DcMotor lowArm = null;
-
-    //Bucket Motors
-    private DcMotor bucketAngle = null;
-    private DcMotor bucketFlaps = null;
-
-    //Climbing Servos
-    private Servo lift1 = null;
-    private Servo lift2 = null;
 
     private ElapsedTime runTime = new ElapsedTime();
 
@@ -47,14 +38,7 @@ public class silverAuton extends LinearOpMode {
         rFDrive = hardwareMap.get(DcMotor.class, "RFDrive");
         rRDrive = hardwareMap.get(DcMotor.class, "RRDrive");
 
-        upArm = hardwareMap.get(DcMotor.class, "UpArm");
         lowArm = hardwareMap.get(DcMotor.class, "LowArm");
-
-        bucketAngle = hardwareMap.get(DcMotor.class, "bucketAngle");
-        bucketFlaps = hardwareMap.get(DcMotor.class, "bucketFlap");
-
-        lift1 = hardwareMap.get(Servo.class, "lift1");
-        lift2 = hardwareMap.get(Servo.class, "lift2");
 
         rFDrive.setDirection(DcMotor.Direction.REVERSE);
         rRDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -77,76 +61,28 @@ public class silverAuton extends LinearOpMode {
 
         waitForStart();
 
-        climbDown();
+        //climbDown();
         encoderDrive(DRIVE_SPEED, 6, 6, 3.0);
         encoderDrive(TURN_SPEED, -12, 12, 3.0);
-        encoderDrive(DRIVE_SPEED, 12, 12, 4.0);
-        encoderDrive(TURN_SPEED, -12, 12, 3.0);
-        encoderDrive(DRIVE_SPEED, 18, 18, 5.0);
-        encoderDrive(TURN_SPEED, -4, 4, 2.0);
-        encoderDrive(DRIVE_SPEED, 24, 24, 6.0);
-        encoderDrive(TURN_SPEED, 22.667, -22.667, 5.0);
-        encoderDrive(DRIVE_SPEED, 41, 41, 10.0);
 
     }
 
-    public void bucketControl(double speed, int position, boolean scooperOn, boolean in) {
-        if (scooperOn) {
-            //scooper on
-            if (in) {
-                //scoop in
-                bucketFlaps.setPower(.5);
-            } else {
-                //scoop out
-                bucketFlaps.setPower(-.5);
-            }
-            bucketAngle.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            bucketAngle.setTargetPosition(position);
-            bucketAngle.setPower(speed);
-            while (bucketAngle.isBusy()) {
-
-            }
-            bucketAngle.setPower(0);
-        } else {
-            bucketFlaps.setPower(0);
-            bucketAngle.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            bucketAngle.setTargetPosition(position);
-            bucketAngle.setPower(speed);
-            while (bucketAngle.isBusy()) {
-
-            }
-            bucketAngle.setPower(0);
-        }
-
-
-    }
-
-    public void armControl(double speed, int position, boolean Up) {
-        upArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    public void armControl(double speed, int position) {
         lowArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //if low arm
+        lowArm.setTargetPosition(position);
+        lowArm.setPower(speed);
 
-        if (Up) {
-            //if up arm
-            upArm.setTargetPosition(position);
-            upArm.setPower(speed);
-        } else {
-            //if low arm
-            lowArm.setTargetPosition(position);
-            lowArm.setPower(speed);
-        }
-        while (lowArm.isBusy() || upArm.isBusy()) {
+        while (lowArm.isBusy()) {
 
         }
         lowArm.setPower(0);
-        upArm.setPower(0);
 
         lowArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        upArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void climbDown() {
-        lift1.setPosition(.82);
-        lift2.setPosition(.82);
+
     }
 
     public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
@@ -193,5 +129,3 @@ public class silverAuton extends LinearOpMode {
         }
     }
 }
-
-
