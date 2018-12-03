@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="Mecanum Robot", group="Teleop")
 public class RobotMecanum extends OpMode {
@@ -13,12 +14,20 @@ public class RobotMecanum extends OpMode {
     private DcMotor rFDrive = null;
     private DcMotor rRDrive = null;
 
+    private DcMotor climber = null;
+    private DcMotor arm = null;
+
+    private ElapsedTime runTime = new ElapsedTime();
+
     @Override
     public void init() {
         lFDrive = hardwareMap.get(DcMotor.class, "LFDrive");
         lRDrive = hardwareMap.get(DcMotor.class, "LRDrive");
         rFDrive = hardwareMap.get(DcMotor.class, "RFDrive");
         rRDrive = hardwareMap.get(DcMotor.class, "RRDrive");
+
+        climber = hardwareMap.get(DcMotor.class, "Climber");
+        arm = hardwareMap.get(DcMotor.class, "Arm");
 
         rFDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         rRDrive.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -27,9 +36,30 @@ public class RobotMecanum extends OpMode {
     }
 
     @Override
+    public void start(){
+        runTime.reset();
+    }
+
+    @Override
     public void loop() {
         mecanumDrive(gamepad1.left_stick_x,-gamepad1.left_stick_y, -gamepad1.right_stick_x);
 
+    }
+
+    public void climber(double speed, int length){
+        if(runTime.seconds() > 75){
+
+        }
+
+        if(gamepad2.dpad_up){
+            climber.setPower(.5);
+        }
+        else if(gamepad2.dpad_down){
+            climber.setPower(-.5);
+        }
+        else{
+            climber.setPower(0);
+        }
     }
 
     public void mecanumDrive(double x, double y, double rotate){
