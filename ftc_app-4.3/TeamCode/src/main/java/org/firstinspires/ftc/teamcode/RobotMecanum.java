@@ -38,15 +38,17 @@ public class RobotMecanum extends OpMode {
     @Override
     public void start(){
         runTime.reset();
+        climber.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     @Override
     public void loop() {
         mecanumDrive(gamepad1.left_stick_x,-gamepad1.left_stick_y, -gamepad1.right_stick_x);
-
+        climber(0, 0);
     }
 
     public void climber(double speed, int length){
+        telemetry.addData("Climber Encoder", climber.getCurrentPosition());
         if(runTime.seconds() > 75){
 
         }
@@ -60,6 +62,8 @@ public class RobotMecanum extends OpMode {
         else{
             climber.setPower(0);
         }
+
+        telemetry.update();
     }
 
     public void mecanumDrive(double x, double y, double rotate){
