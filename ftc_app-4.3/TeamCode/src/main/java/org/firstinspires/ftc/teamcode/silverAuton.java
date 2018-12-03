@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="Silver Auto", group="14465")
 public class silverAuton extends LinearOpMode {
+    // todo: write your code here
     //lFDrive Motors
     private DcMotor lFDrive = null;
     private DcMotor lRDrive = null;
@@ -26,8 +27,8 @@ public class silverAuton extends LinearOpMode {
     static final double COUNTS_PER_MOTOR_REV = 1440;
     static final double DRIVE_GEAR_REDUCTION = 1.0;
 
-    static final double DRIVE_SPEED = 0.6;
-    static final double TURN_SPEED = 0.5;
+    static final double DRIVE_SPEED = 0.4;
+    static final double TURN_SPEED = 0.3;
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
 
     @Override
@@ -38,7 +39,7 @@ public class silverAuton extends LinearOpMode {
         rFDrive = hardwareMap.get(DcMotor.class, "RFDrive");
         rRDrive = hardwareMap.get(DcMotor.class, "RRDrive");
 
-        lowArm = hardwareMap.get(DcMotor.class, "LowArm");
+        //lowArm = hardwareMap.get(DcMotor.class, "LowArm");
 
         rFDrive.setDirection(DcMotor.Direction.REVERSE);
         rRDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -62,10 +63,15 @@ public class silverAuton extends LinearOpMode {
         waitForStart();
 
         //climbDown();
-        encoderDrive(DRIVE_SPEED, 6, 6, 3.0);
-        encoderDrive(TURN_SPEED, -12, 12, 3.0);
+        //encoderDrive(DRIVE_SPEED, 6, 6, 3.0);
+        //encoderDrive(TURN_SPEED, -12, 12, 3.0);
 
-        mecanumDrive(1.0, 4, 3.0);
+        mecanumDrive(1.0, -34, 5.0);
+        encoderDrive(DRIVE_SPEED, -45, -45, 12.0);
+        encoderDrive(DRIVE_SPEED, 18, -18, 6.0);
+        encoderDrive(DRIVE_SPEED, -45, -45, 10.0);
+        encoderDrive(1.0, -48, 48, 20.0);
+        encoderDrive(1.0, -85, -85, 20.0);
 
     }
 
@@ -90,12 +96,17 @@ public class silverAuton extends LinearOpMode {
     public void mecanumDrive(double strafeSpeed, double strafeDistance, double timeoutS){
         int newStrafeTarget;
 
+        lFDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lRDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rFDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rRDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         if (opModeIsActive()){
             newStrafeTarget = lFDrive.getCurrentPosition() + (int)(strafeDistance * COUNTS_PER_INCH);
             lFDrive.setTargetPosition(newStrafeTarget);
             lRDrive.setTargetPosition(-newStrafeTarget);
-            rFDrive.setTargetPosition(newStrafeTarget);
-            rRDrive.setTargetPosition(-newStrafeTarget);
+            rFDrive.setTargetPosition(-newStrafeTarget);
+            rRDrive.setTargetPosition(newStrafeTarget);
 
             lFDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             rFDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -130,6 +141,11 @@ public class silverAuton extends LinearOpMode {
     public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
         int newLeftTarget;
         int newRightTarget;
+
+        lFDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lRDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rFDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rRDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         if (opModeIsActive()) {
             newLeftTarget = lFDrive.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
